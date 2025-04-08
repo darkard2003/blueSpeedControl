@@ -10,6 +10,10 @@ This project implements a Bluetooth-controlled motor driver system using an ESP3
 - LED status indication
 - Compatible with standard L298N or similar H-bridge motor drivers
 
+## Circuit Diagram
+
+![Circuit Diagram Example](circuit_ex.png)
+
 ## Hardware Requirements
 
 - ESP32 development board (ESP32-DOIT DevKit v1)
