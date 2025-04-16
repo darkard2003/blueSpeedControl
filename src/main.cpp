@@ -31,7 +31,7 @@ void setAngle(int angle) { steerAngle = (angle - 127) / 127.0; }
 
 void setSpeed(int speedVal) { speed = (speedVal - 127) / 127.0; }
 
-const int DRIVE_CONTROL_SIZE = 2;
+const int DRIVE_CONTROL_SIZE = 3;
 uint8_t *driveControl;
 
 void setupMotorDrivers();
@@ -132,9 +132,9 @@ void runMotors() {
   if (speed == 0) {
     if (steerAngle > 0) {
       leftMotorSpeed = steerAngle;
-      rightMotorSpeed = 0;
+      rightMotorSpeed = -steerAngle;
     } else if (steerAngle < 0) {
-      leftMotorSpeed = 0;
+      leftMotorSpeed = steerAngle;
       rightMotorSpeed = -steerAngle;
     }
   } else if (speed > 0) {
@@ -185,8 +185,8 @@ void runMotors() {
     digitalWrite(MOTORS_RIGHT_IN2, LOW);
   }
 
-  int leftPWM = min(255, (int)(abs(leftMotorSpeed) * 255));
-  int rightPWM = min(255, (int)(abs(rightMotorSpeed) * 255));
+  int leftPWM = min(230, (int)(abs(leftMotorSpeed) * 230));
+  int rightPWM = min(230, (int)(abs(rightMotorSpeed) * 230));
 
   ledcWrite(pwmChannel1, leftPWM);
   ledcWrite(pwmChannel2, rightPWM);
